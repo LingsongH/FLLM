@@ -12,7 +12,7 @@
 2. 用 `skills` 封装高频分析动作，减少 Agent 直接拼装底层工具的复杂度。
 3. 支持从数据清洗、模型训练到投研报告生成的端到端流程。
 
-## 2. 当前项目结构
+## 2. 项目结构
 
 ```text
 Finance/
@@ -56,7 +56,6 @@ Finance/
 - `valuation_analysis_skill`
 - `news_analysis_skill`
 
-新增 `contracts.py` 用于定义每个 skill 的工具契约（必需工具 + 可选工具）；`registry.py` 会在运行时校验工具可用性，不满足契约时自动跳过并记录原因。
 
 ### 3.3 智能体层（Agents）
 
@@ -104,19 +103,3 @@ python pipelines/training/train_qwen_risk.py
 python pipelines/evaluation/test_qwen_sentiment.py
 python pipelines/evaluation/test_risk_model.py
 ```
-
-## 5. skills 扩展方法
-
-新增 skill 推荐流程：
-1. 在 `src/skills/` 新建 skill 文件并定义 `@tool("your_skill_name")`
-2. 在 `contracts.py` 注册 skill 契约
-3. 在 `registry.py` 的 `SKILL_NAME_MAP` 与 `AGENT_SKILLS` 中挂载
-4. 在对应 agent prompt 中加入“优先使用该 skill”的调用指令
-
-## 6. 重构说明
-
-本次重构聚焦两件事：
-1. 目录清晰化：将应用、服务、数据、流水线、工具、文档明确分层。
-2. skills 工程化：新增 skill 契约与可用性校验，降低运行时工具缺失导致的故障概率。
-
-详细 skill 文档见：`docs/skills/SKILL_SYSTEM.md`。
