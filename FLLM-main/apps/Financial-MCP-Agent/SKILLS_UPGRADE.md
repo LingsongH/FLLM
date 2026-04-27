@@ -1,36 +1,6 @@
 
-# Financial-MCP-Agent Skills 增强版
+# Financial-MCP-Agent Skills
 
-这个版本在原项目基础上做了**加法**：
-
-- 保留原有 `MCP client -> MCP server -> atomic tools` 链路
-- 新增 `src/skills/` 目录，封装高层业务技能
-- 四个分析 Agent 改为优先使用高层 skill，再按需回退到底层 raw tools
-- `src/tools/mcp_config.py` 改为支持环境变量和相对路径，减少硬编码问题
-
-## 新增目录
-
-```text
-src/skills/
-├── __init__.py
-├── README.md
-├── base.py
-├── contracts.py
-├── company_profile_skill.py
-├── fundamental_skill.py
-├── technical_skill.py
-├── valuation_skill.py
-├── news_skill.py
-└── registry.py
-```
-
-## 设计思路
-
-- **MCP**：提供原子能力，如查财报、查K线、爬新闻
-- **Skill**：组合多个原子工具，形成“公司画像 / 基本面采集 / 技术面采集 / 估值研究 / 新闻研究”高层能力
-- **Agent**：理解任务、选择 skill、进行推理与总结
-
-## 主要改动点
 
 1. `company_profile_skill`：统一拉取公司基本信息、行业、最近交易日、历史分红
 2. `fundamental_analysis_skill`：统一拉取盈利/成长/营运/偿债/现金流/杜邦/业绩披露
@@ -42,7 +12,7 @@ src/skills/
 
 ## 使用建议
 
-在当前工作区结构中，推荐按以下路径放置：
+在当前工作区结构中，按以下路径放置：
 
 - `apps/Financial-MCP-Agent`
 - `services/a-share-mcp-is-just-i-need`
