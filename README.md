@@ -113,10 +113,3 @@ python pipelines/evaluation/test_risk_model.py
 3. 在 `registry.py` 的 `SKILL_NAME_MAP` 与 `AGENT_SKILLS` 中挂载
 4. 在对应 agent prompt 中加入“优先使用该 skill”的调用指令
 
-## 6. 重构说明
-
-本次重构聚焦两件事：
-1. 目录清晰化：将应用、服务、数据、流水线、工具、文档明确分层。
-2. skills 工程化：新增 skill 契约与可用性校验，降低运行时工具缺失导致的故障概率。
-
-详细 skill 文档见：`docs/skills/SKILL_SYSTEM.md`。
